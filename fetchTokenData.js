@@ -2,9 +2,6 @@ const axios = require('axios');
 
 const dexscreenerUrl = `https://api.dexscreener.io/latest/dex/tokens`;
 
-// placeholder addresses
-const addresses = ['FZnSMd1hPu5MVgttmtfDZUPN5gcuexvrh3CB67UuQshb', 'G8Vy25NzjRmuQtnN35xF7j3X2Z1TrV39XijZu8Mg4w8n'];
-
 async function getTokenData(addresses) {
     try {
         const results = await Promise.all(addresses.map(address => axios.get(`${dexscreenerUrl}/${address}`)));
@@ -34,11 +31,3 @@ const formatData = (tokenName, priceUSD, fdv) => ({
 module.exports = {
     getTokenData
 };
-
-// example call
-// getTokenData(addresses)
-//     .then(tokenDataArray => {
-//         const data = tokenDataArray;
-//         console.log(data);
-//     })
-//     .catch(error => console.error('Error:', error));
